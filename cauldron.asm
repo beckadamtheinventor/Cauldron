@@ -2,7 +2,7 @@ include	'include/ez80.inc'
 include	'include/tiformat.inc'
 include	'include/ti84pce.inc'
 
-; define	CEMU_ONLY
+;define	CEMU_ONLY
 
 format	ti executable 'CAULDRON'
 
@@ -74,7 +74,11 @@ Cauldron:
 	call	hellebore.unlock_flash_exploit
 	pop	iy
 	call	mandrake.patch
+	push	af
 	call	gentian.lock
+	pop	af
+	ld	hl, .failure_string
+	jr	c, .exit_status
 	ld	hl, .success_string
 .exit_status:
 	ld	iy, $D00080
@@ -119,6 +123,9 @@ Cauldron:
  db "Press any key to continue.", 0
 .unknown_string:
  db "Unknown boot code. Are you sure the hardware is compatible ?", 0
+.failure_string:
+ db "Patch can't be applied !", 0
+ 
 include	'mandrake.asm'
 include	'gentian.asm'
 include	'hellebore.asm'

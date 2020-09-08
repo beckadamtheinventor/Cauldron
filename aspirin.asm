@@ -78,7 +78,8 @@ aspirin:
 	ld	(hl), l
 	add	hl, hl
 	ld	(hl), $A0
-; byte to program = A
+; byte to program = a
+; safe and with the byte
 	ld	(de), a
 if ~defined CEMU_ONLY
 	ex	de, hl

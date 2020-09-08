@@ -19,7 +19,7 @@ Use at your own risk.
 
 ## How to run
 
-Just launch the program. It may error out with Error:Break. This is perfectly normal. The patch as still been applied.
+Just launch the program. It may error out with Error:Break. This is perfectly normal. The patch has still been applied.
 
 ## Acknowledgement
 

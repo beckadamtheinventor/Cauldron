@@ -80,11 +80,13 @@ aspirin:
 	ld	(hl), $A0
 ; byte to program = A
 	ld	(de), a
+if ~defined CEMU_ONLY
 	ex	de, hl
 .wait:
 	cp	a, (hl)
 	jr	nz, .wait
 	ex	de, hl
+end if
 	pop	hl
 	inc	de
 	cpi

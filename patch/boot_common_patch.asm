@@ -3,6 +3,10 @@ define	null	$E40000
 boot_common_patch:
  db	6	; patch count, order is important for safety
  
+ dl	.p_003
+ dl	4
+ dl	$016000
+ 
  dl	.p_000
  dl	.p_000_end - .p_000
  dl	$016066 ;(end of interrupt patch is 65)
@@ -22,11 +26,7 @@ boot_common_patch:
  dl	null
  dl	4
  dl	$00006B
- 
- dl	.p_003
- dl	4
- dl	$016000
- 
+  
  ; full. Flash. Unlock. In. Plain. SIGHT
 .p_000:
 .flash_unlock:

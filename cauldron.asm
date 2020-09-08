@@ -2,7 +2,7 @@ include	'include/ez80.inc'
 include	'include/tiformat.inc'
 include	'include/ti84pce.inc'
 
-;define	CEMU_ONLY
+define	CEMU_ONLY
 
 format	ti executable 'CAULDRON'
 
@@ -71,7 +71,6 @@ Cauldron:
 	call	gentian.port_setup
 	call	gentian.unlock
 	call	hellebore.setup
-	call	hellebore.unlock_flash_exploit
 	pop	iy
 	call	mandrake.patch
 	push	af

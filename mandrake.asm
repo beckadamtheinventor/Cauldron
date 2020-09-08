@@ -17,6 +17,7 @@ mandrake:
 	pop	iy
 	jr	c, .failure
 	push	iy
+	call	hellebore.unlock_flash_exploit	
 	call	aspirin.reset_all_ipbs
 	call	aspirin.wait_ipbs_500_us
 	pop	iy
@@ -42,9 +43,6 @@ mandrake:
 	push	iy
 	ld	b, (iy+PATCH_NUMBER)
 	inc	iy
-	ld	a, b
-	or	a, a
-	jr	z, .error_null
 .loop:
 	push	bc
 	ld	hl, (iy+PATCH_ADRESS)
@@ -58,18 +56,13 @@ mandrake:
 	xor	a, a
 	ret
 
-.error_mismatch:
-.error_null:
-	scf
-	ret
-
 .check_patch:
 	push	iy
 	ld	b, (iy+PATCH_NUMBER)
 	inc	iy
 	ld	a, b
 	or	a, a
-	jr	z, .error_null
+	jr	z, .error_mismatch
 .verify_loop:
 	push	bc
 	ld	hl, (iy+PATCH_ADRESS)
@@ -81,6 +74,10 @@ mandrake:
 	djnz	.verify_loop
 	pop	iy
 	xor	a, a
+	ret
+
+.error_mismatch:
+	scf
 	ret
 	
 .check_apply:

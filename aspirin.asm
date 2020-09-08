@@ -2,11 +2,13 @@
 aspirin: 
  
 .sector_erase:
+	di
 	ld	bc, $F8
 	push	bc
 	jp	boot_erase_flash
 	
 .reset_all_ipbs:
+	di
 	call	.enter_ipb_program
 	ld 	a, $80
 	ld	($00), a
@@ -23,11 +25,13 @@ aspirin:
 	jp	.exit_ipb_program
 
 .set_boot_ipbs:
+	di
 	ld  b, 9
 	ld  hl, 0
 	ld  de, 8192
 
 .set_ipb:
+	di
 	call	.enter_ipb_program
 	ld	a, $A0
 	ld	($000), a
@@ -52,6 +56,7 @@ aspirin:
 	ret
 
 .enter_ipb_program:
+	di
 	ld 	a, $AA
 	ld	($AAA), a
 	ld	a, $55
@@ -61,6 +66,7 @@ aspirin:
 	ret
 
 .exit_ipb_program:
+	di
 	ld	a, $90
 	ld	($00), a
 	xor	a,a
@@ -69,6 +75,7 @@ aspirin:
 	
 .write:
 ; write hl to flash for bc bytes
+	di
 .write_loop:
 	ld	a, (hl)
 	push	hl

@@ -39,6 +39,7 @@ hellebore:
 	bit	2, a
 	ret
 .lock:
+	di
 	xor	a, a
 	out0	($28), a
 	in0	a, ($06)

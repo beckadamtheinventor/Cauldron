@@ -1,4 +1,4 @@
-define	null	$E40000
+define	null	$FF0000
 
 boot_common_patch:
  db	6	; patch count, order is important for safety
